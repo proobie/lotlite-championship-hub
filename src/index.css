@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+
+    /* Tech Blue (Teal/Cyan) - Primary Brand Color */
+    --primary: 180 100% 41%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Growth Green - Secondary Brand Color */
+    --secondary: 146 47% 47%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Deep Navy - Accent Dark */
+    --accent: 206 44% 20%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 180 100% 41%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradient stops */
+    --gradient-start: 180 100% 41%;
+    --gradient-end: 146 47% 47%;
+    
+    /* Circuit board pattern colors */
+    --circuit-primary: 180 100% 41%;
+    --circuit-secondary: 146 47% 47%;
+  }
+
+  .dark {
+    --background: 206 44% 12%;
+    --foreground: 0 0% 95%;
+
+    --card: 206 44% 15%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 206 44% 15%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 180 100% 41%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 146 47% 47%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 206 44% 25%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 206 44% 20%;
+    --muted-foreground: 0 0% 60%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 206 44% 20%;
+    --input: 206 44% 20%;
+    --ring: 180 100% 41%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .circuit-bg {
+    background-image: 
+      linear-gradient(90deg, hsl(var(--circuit-primary) / 0.03) 1px, transparent 1px),
+      linear-gradient(hsl(var(--circuit-secondary) / 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .circuit-pattern {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .circuit-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      repeating-linear-gradient(90deg, hsl(var(--circuit-primary) / 0.05) 0px, transparent 1px, transparent 30px),
+      repeating-linear-gradient(0deg, hsl(var(--circuit-secondary) / 0.05) 0px, transparent 1px, transparent 30px);
+    pointer-events: none;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+
+  .stat-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24 px-4 md:px-8;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+}
